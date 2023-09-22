@@ -1,0 +1,444 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> prog
+Rule 1     prog -> line X
+Rule 2     X -> EOF
+Rule 3     X -> prog
+Rule 4     line -> stmt EOL
+Rule 5     stmt -> in
+Rule 6     stmt -> out
+Rule 7     stmt -> atrib
+Rule 8     in -> INPUT VAR
+Rule 9     out -> OUTPUT VAR
+Rule 10    atrib -> VAR AT expr
+Rule 11    expr -> expr SUM term
+Rule 12    expr -> expr SUB term
+Rule 13    expr -> term
+Rule 14    term -> term MULT fact
+Rule 15    term -> term DIV fact
+Rule 16    term -> fact
+Rule 17    fact -> NUM
+Rule 18    fact -> VAR
+Rule 19    fact -> OPEN expr CLOSE
+
+Terminals, with rules where they appear
+
+AT                   : 10
+CLOSE                : 19
+DIV                  : 15
+EOF                  : 2
+EOL                  : 4
+INPUT                : 8
+MULT                 : 14
+NUM                  : 17
+OPEN                 : 19
+OUTPUT               : 9
+SUB                  : 12
+SUM                  : 11
+VAR                  : 8 9 10 18
+error                : 
+
+Nonterminals, with rules where they appear
+
+X                    : 1
+atrib                : 7
+expr                 : 10 11 12 19
+fact                 : 14 15 16
+in                   : 5
+line                 : 1
+out                  : 6
+prog                 : 3 0
+stmt                 : 4
+term                 : 11 12 13 14 15
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . prog
+    (1) prog -> . line X
+    (4) line -> . stmt EOL
+    (5) stmt -> . in
+    (6) stmt -> . out
+    (7) stmt -> . atrib
+    (8) in -> . INPUT VAR
+    (9) out -> . OUTPUT VAR
+    (10) atrib -> . VAR AT expr
+
+    INPUT           shift and go to state 7
+    OUTPUT          shift and go to state 9
+    VAR             shift and go to state 8
+
+    prog                           shift and go to state 1
+    line                           shift and go to state 2
+    stmt                           shift and go to state 3
+    in                             shift and go to state 4
+    out                            shift and go to state 5
+    atrib                          shift and go to state 6
+
+state 1
+
+    (0) S' -> prog .
+
+
+
+state 2
+
+    (1) prog -> line . X
+    (2) X -> . EOF
+    (3) X -> . prog
+    (1) prog -> . line X
+    (4) line -> . stmt EOL
+    (5) stmt -> . in
+    (6) stmt -> . out
+    (7) stmt -> . atrib
+    (8) in -> . INPUT VAR
+    (9) out -> . OUTPUT VAR
+    (10) atrib -> . VAR AT expr
+
+    EOF             shift and go to state 11
+    INPUT           shift and go to state 7
+    OUTPUT          shift and go to state 9
+    VAR             shift and go to state 8
+
+    line                           shift and go to state 2
+    X                              shift and go to state 10
+    prog                           shift and go to state 12
+    stmt                           shift and go to state 3
+    in                             shift and go to state 4
+    out                            shift and go to state 5
+    atrib                          shift and go to state 6
+
+state 3
+
+    (4) line -> stmt . EOL
+
+    EOL             shift and go to state 13
+
+
+state 4
+
+    (5) stmt -> in .
+
+    EOL             reduce using rule 5 (stmt -> in .)
+
+
+state 5
+
+    (6) stmt -> out .
+
+    EOL             reduce using rule 6 (stmt -> out .)
+
+
+state 6
+
+    (7) stmt -> atrib .
+
+    EOL             reduce using rule 7 (stmt -> atrib .)
+
+
+state 7
+
+    (8) in -> INPUT . VAR
+
+    VAR             shift and go to state 14
+
+
+state 8
+
+    (10) atrib -> VAR . AT expr
+
+    AT              shift and go to state 15
+
+
+state 9
+
+    (9) out -> OUTPUT . VAR
+
+    VAR             shift and go to state 16
+
+
+state 10
+
+    (1) prog -> line X .
+
+    $end            reduce using rule 1 (prog -> line X .)
+
+
+state 11
+
+    (2) X -> EOF .
+
+    $end            reduce using rule 2 (X -> EOF .)
+
+
+state 12
+
+    (3) X -> prog .
+
+    $end            reduce using rule 3 (X -> prog .)
+
+
+state 13
+
+    (4) line -> stmt EOL .
+
+    EOF             reduce using rule 4 (line -> stmt EOL .)
+    INPUT           reduce using rule 4 (line -> stmt EOL .)
+    OUTPUT          reduce using rule 4 (line -> stmt EOL .)
+    VAR             reduce using rule 4 (line -> stmt EOL .)
+
+
+state 14
+
+    (8) in -> INPUT VAR .
+
+    EOL             reduce using rule 8 (in -> INPUT VAR .)
+
+
+state 15
+
+    (10) atrib -> VAR AT . expr
+    (11) expr -> . expr SUM term
+    (12) expr -> . expr SUB term
+    (13) expr -> . term
+    (14) term -> . term MULT fact
+    (15) term -> . term DIV fact
+    (16) term -> . fact
+    (17) fact -> . NUM
+    (18) fact -> . VAR
+    (19) fact -> . OPEN expr CLOSE
+
+    NUM             shift and go to state 21
+    VAR             shift and go to state 17
+    OPEN            shift and go to state 22
+
+    expr                           shift and go to state 18
+    term                           shift and go to state 19
+    fact                           shift and go to state 20
+
+state 16
+
+    (9) out -> OUTPUT VAR .
+
+    EOL             reduce using rule 9 (out -> OUTPUT VAR .)
+
+
+state 17
+
+    (18) fact -> VAR .
+
+    MULT            reduce using rule 18 (fact -> VAR .)
+    DIV             reduce using rule 18 (fact -> VAR .)
+    SUM             reduce using rule 18 (fact -> VAR .)
+    SUB             reduce using rule 18 (fact -> VAR .)
+    EOL             reduce using rule 18 (fact -> VAR .)
+    CLOSE           reduce using rule 18 (fact -> VAR .)
+
+
+state 18
+
+    (10) atrib -> VAR AT expr .
+    (11) expr -> expr . SUM term
+    (12) expr -> expr . SUB term
+
+    EOL             reduce using rule 10 (atrib -> VAR AT expr .)
+    SUM             shift and go to state 23
+    SUB             shift and go to state 24
+
+
+state 19
+
+    (13) expr -> term .
+    (14) term -> term . MULT fact
+    (15) term -> term . DIV fact
+
+    SUM             reduce using rule 13 (expr -> term .)
+    SUB             reduce using rule 13 (expr -> term .)
+    EOL             reduce using rule 13 (expr -> term .)
+    CLOSE           reduce using rule 13 (expr -> term .)
+    MULT            shift and go to state 25
+    DIV             shift and go to state 26
+
+
+state 20
+
+    (16) term -> fact .
+
+    MULT            reduce using rule 16 (term -> fact .)
+    DIV             reduce using rule 16 (term -> fact .)
+    SUM             reduce using rule 16 (term -> fact .)
+    SUB             reduce using rule 16 (term -> fact .)
+    EOL             reduce using rule 16 (term -> fact .)
+    CLOSE           reduce using rule 16 (term -> fact .)
+
+
+state 21
+
+    (17) fact -> NUM .
+
+    MULT            reduce using rule 17 (fact -> NUM .)
+    DIV             reduce using rule 17 (fact -> NUM .)
+    SUM             reduce using rule 17 (fact -> NUM .)
+    SUB             reduce using rule 17 (fact -> NUM .)
+    EOL             reduce using rule 17 (fact -> NUM .)
+    CLOSE           reduce using rule 17 (fact -> NUM .)
+
+
+state 22
+
+    (19) fact -> OPEN . expr CLOSE
+    (11) expr -> . expr SUM term
+    (12) expr -> . expr SUB term
+    (13) expr -> . term
+    (14) term -> . term MULT fact
+    (15) term -> . term DIV fact
+    (16) term -> . fact
+    (17) fact -> . NUM
+    (18) fact -> . VAR
+    (19) fact -> . OPEN expr CLOSE
+
+    NUM             shift and go to state 21
+    VAR             shift and go to state 17
+    OPEN            shift and go to state 22
+
+    expr                           shift and go to state 27
+    term                           shift and go to state 19
+    fact                           shift and go to state 20
+
+state 23
+
+    (11) expr -> expr SUM . term
+    (14) term -> . term MULT fact
+    (15) term -> . term DIV fact
+    (16) term -> . fact
+    (17) fact -> . NUM
+    (18) fact -> . VAR
+    (19) fact -> . OPEN expr CLOSE
+
+    NUM             shift and go to state 21
+    VAR             shift and go to state 17
+    OPEN            shift and go to state 22
+
+    term                           shift and go to state 28
+    fact                           shift and go to state 20
+
+state 24
+
+    (12) expr -> expr SUB . term
+    (14) term -> . term MULT fact
+    (15) term -> . term DIV fact
+    (16) term -> . fact
+    (17) fact -> . NUM
+    (18) fact -> . VAR
+    (19) fact -> . OPEN expr CLOSE
+
+    NUM             shift and go to state 21
+    VAR             shift and go to state 17
+    OPEN            shift and go to state 22
+
+    term                           shift and go to state 29
+    fact                           shift and go to state 20
+
+state 25
+
+    (14) term -> term MULT . fact
+    (17) fact -> . NUM
+    (18) fact -> . VAR
+    (19) fact -> . OPEN expr CLOSE
+
+    NUM             shift and go to state 21
+    VAR             shift and go to state 17
+    OPEN            shift and go to state 22
+
+    fact                           shift and go to state 30
+
+state 26
+
+    (15) term -> term DIV . fact
+    (17) fact -> . NUM
+    (18) fact -> . VAR
+    (19) fact -> . OPEN expr CLOSE
+
+    NUM             shift and go to state 21
+    VAR             shift and go to state 17
+    OPEN            shift and go to state 22
+
+    fact                           shift and go to state 31
+
+state 27
+
+    (19) fact -> OPEN expr . CLOSE
+    (11) expr -> expr . SUM term
+    (12) expr -> expr . SUB term
+
+    CLOSE           shift and go to state 32
+    SUM             shift and go to state 23
+    SUB             shift and go to state 24
+
+
+state 28
+
+    (11) expr -> expr SUM term .
+    (14) term -> term . MULT fact
+    (15) term -> term . DIV fact
+
+    SUM             reduce using rule 11 (expr -> expr SUM term .)
+    SUB             reduce using rule 11 (expr -> expr SUM term .)
+    EOL             reduce using rule 11 (expr -> expr SUM term .)
+    CLOSE           reduce using rule 11 (expr -> expr SUM term .)
+    MULT            shift and go to state 25
+    DIV             shift and go to state 26
+
+
+state 29
+
+    (12) expr -> expr SUB term .
+    (14) term -> term . MULT fact
+    (15) term -> term . DIV fact
+
+    SUM             reduce using rule 12 (expr -> expr SUB term .)
+    SUB             reduce using rule 12 (expr -> expr SUB term .)
+    EOL             reduce using rule 12 (expr -> expr SUB term .)
+    CLOSE           reduce using rule 12 (expr -> expr SUB term .)
+    MULT            shift and go to state 25
+    DIV             shift and go to state 26
+
+
+state 30
+
+    (14) term -> term MULT fact .
+
+    MULT            reduce using rule 14 (term -> term MULT fact .)
+    DIV             reduce using rule 14 (term -> term MULT fact .)
+    SUM             reduce using rule 14 (term -> term MULT fact .)
+    SUB             reduce using rule 14 (term -> term MULT fact .)
+    EOL             reduce using rule 14 (term -> term MULT fact .)
+    CLOSE           reduce using rule 14 (term -> term MULT fact .)
+
+
+state 31
+
+    (15) term -> term DIV fact .
+
+    MULT            reduce using rule 15 (term -> term DIV fact .)
+    DIV             reduce using rule 15 (term -> term DIV fact .)
+    SUM             reduce using rule 15 (term -> term DIV fact .)
+    SUB             reduce using rule 15 (term -> term DIV fact .)
+    EOL             reduce using rule 15 (term -> term DIV fact .)
+    CLOSE           reduce using rule 15 (term -> term DIV fact .)
+
+
+state 32
+
+    (19) fact -> OPEN expr CLOSE .
+
+    MULT            reduce using rule 19 (fact -> OPEN expr CLOSE .)
+    DIV             reduce using rule 19 (fact -> OPEN expr CLOSE .)
+    SUM             reduce using rule 19 (fact -> OPEN expr CLOSE .)
+    SUB             reduce using rule 19 (fact -> OPEN expr CLOSE .)
+    EOL             reduce using rule 19 (fact -> OPEN expr CLOSE .)
+    CLOSE           reduce using rule 19 (fact -> OPEN expr CLOSE .)
+

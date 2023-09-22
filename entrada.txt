@@ -1,0 +1,4 @@
+$w = 5-2
+read $x
+read $x
+EOF
